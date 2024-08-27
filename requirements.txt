@@ -8,3 +8,5 @@ tensorflow==2.17.0
 scikit-learn==1.3.0
 yfinance==0.2.27
 requests==2.31.0
+streamlit==1.16.0  # Update to the latest Streamlit version or specify the one compatible with your code
+setuptools==68.0.0 # Ensure setuptools is included to avoid distutils issues
