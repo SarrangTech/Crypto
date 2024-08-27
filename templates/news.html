@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitcoin News</title>
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(
+          135deg,
+          #dfe9f3,
+          #ffffff
+        ); /* Gradient background */
+        color: #333;
+      }
+
+      /* Header Styling */
+      header {
+        background-color: #1e2a38; /* Dark blue */
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid #7f8c8d; /* Soft gray border */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #ecf0f1; /* Light grayish blue */
+      }
+
+      /* News Article Styling */
+      .article {
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h2 {
+        color: #1e2a38; /* Dark blue */
+        font-size: 1.8em;
+        margin: 0 0 10px;
+      }
+
+      p {
+        font-size: 1.1em;
+        color: #333;
+        margin: 10px 0;
+      }
+
+      a {
+        color: #3498db; /* Bright blue */
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        color: #2980b9; /* Darker blue */
+        text-decoration: underline;
+      }
+
+      hr {
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 20px 0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2em;
+        }
+
+        h2 {
+          font-size: 1.5em;
+        }
+
+        p {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Bitcoin News</h1>
+    </header>
+
+    <main>
+      {% for article in articles %}
+      <div class="article">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.description }}</p>
+        <p>Published at: {{ format_datetime(article.publishedAt) }}</p>
+        <a href="{{ article.url }}" target="_blank">Read more</a>
+      </div>
+      {% endfor %}
+    </main>
+  </body>
+</html>

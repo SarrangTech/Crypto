@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bitcoin Price History</title>
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #dfe9f3, #ffffff);
+        color: #333;
+      }
+
+      /* Header Styling */
+      header {
+        background-color: #1e2a38;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid #7f8c8d;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #ecf0f1;
+      }
+
+      /* Main Content Styling */
+      main {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: calc(100vh - 80px);
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      /* Graph Container Styling */
+      #graph {
+        width: 100%;
+        height: calc(100vh - 80px);
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      /* Price Display Styling */
+      #price-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: #ffffff;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        font-size: 1.2em;
+        z-index: 1000;
+      }
+
+      /* Link Styling */
+      .link {
+        text-decoration: none;
+        color: #3498db;
+        font-size: 1.2em;
+        margin: 10px;
+      }
+
+      .link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Bitcoin Price History</h1>
+    </header>
+    <main>
+      <div id="price-container">
+        Latest Price:
+        <span id="latest-price" style="color: {{ color }};"
+          >{{ latest_price }} ({{ percentage_change }}%) {{ price_trend }}</span
+        >
+      </div>
+      <div id="graph">{{ graph|safe }}</div>
+      <a href="/" class="link">Back to Home</a>
+    </main>
+  </body>
+</html>

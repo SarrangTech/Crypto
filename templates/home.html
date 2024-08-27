@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+    <style>
+      /* General Body Styling */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(
+          135deg,
+          #dfe9f3,
+          #ffffff
+        ); /* Gradient background */
+        color: #333;
+      }
+
+      /* Header Styling */
+      header {
+        background-color: #1e2a38; /* Dark blue */
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 4px solid #7f8c8d; /* Soft gray border */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #ecf0f1; /* Light grayish blue */
+      }
+
+      /* Main Section Styling */
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+        padding: 20px;
+      }
+
+      nav {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 20px;
+      }
+
+      .nav-link {
+        display: block;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #3498db; /* Bright blue */
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        text-align: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link:hover {
+        background-color: #2980b9; /* Darker blue */
+        transform: translateY(-3px);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2em;
+        }
+
+        .nav-link {
+          font-size: 1em;
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to the Bitcoin Forecast App</h1>
+    </header>
+
+    <main>
+      <nav>
+        <ul>
+          <li>
+            <a href="{{ url_for('index') }}" class="nav-link"
+              >View Current Bitcoin Prices</a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('forecast') }}" class="nav-link"
+              >Predict Future Bitcoin Prices</a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('news') }}" class="nav-link">Bitcoin News</a>
+          </li>
+          <li>
+            <a href="{{ url_for('contactus') }}" class="nav-link">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>
