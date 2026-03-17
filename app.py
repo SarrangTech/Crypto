@@ -5,7 +5,11 @@ import plotly.graph_objects as go
 import pytz
 from datetime import datetime, timedelta
 import yfinance as yf
-from tensorflow.keras.models import load_model
+try:
+    from tensorflow.keras.models import load_model
+    TF_AVAILABLE = True
+except Exception:
+    TF_AVAILABLE = False
 from sklearn.preprocessing import MinMaxScaler
 import requests
 import sqlite3
@@ -13,6 +17,8 @@ import sqlite3
 app = Flask(__name__)
 
 def load_data_and_model(n_days):
+    if not TF_AVAILABLE:
+        raise RuntimeError('TensorFlow is unavailable in deployment.')
     if n_days == 1:
         model = load_model('models/lstm_btc_V2.h5')
         end_date = datetime.now(pytz.timezone('Asia/Kolkata'))
@@ -129,14 +135,15 @@ def forecast():
     arrow = None
     color = None
     percentage_change = None
+    error = None
 
     if request.method == 'POST':
         try:
             n_days = int(request.form.get('n_days'))
-            model, last_data, scaler, last_date, latest_price = load_data_and_model(n_days)
             n_periods = n_days if n_days > 1 else n_days * 24
             period = 'days' if n_days > 1 else 'hours'
 
+            model, last_data, scaler, last_date, latest_price = load_data_and_model(n_days)
             dates, predictions = forecast_future_prices(model, last_data, n_periods, scaler, last_date, period)
 
             # Calculate percentage change
@@ -187,9 +194,10 @@ def forecast():
             prediction = f"${predictions[-1]:,.2f} ({percentage_change:.2f}%)" if percentage_change is not None else None
 
         except Exception as e:
+            error = str(e)
             print(f"Error: {e}")
 
-    return render_template('forecast.html', graph=graph, prediction=prediction, arrow=arrow, color=color, percentage_change=f"{percentage_change:.2f}" if percentage_change is not None else "N/A")
+    return render_template('forecast.html', graph=graph, prediction=prediction, arrow=arrow, color=color, percentage_change=f"{percentage_change:.2f}" if percentage_change is not None else "N/A", error=error)
 
 @app.route('/news')
 def news():
